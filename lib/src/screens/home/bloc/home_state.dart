@@ -1,12 +1,10 @@
 part of 'home_cubit.dart';
 
 abstract class HomeState {
-  late int number;
-  late bool hasColor;
+  late List<PostData> posts;
 
   HomeState(HomeState? state) {
-    number = state?.number ?? 0;
-    hasColor = state?.hasColor ?? false;
+    posts = state?.posts ?? [];
   }
 }
 
@@ -14,26 +12,14 @@ class HomeInitial extends HomeState {
   HomeInitial({HomeState? state}) : super(state);
 }
 
-class DataNumberState extends HomeState {
-  DataNumberState(super.state);
+class DataPostsState extends HomeState {
+  DataPostsState(super.state);
 }
 
-class NumberChangingState extends DataNumberState {
-  NumberChangingState(super.state);
+class PostsLoadingState extends DataPostsState {
+  PostsLoadingState(super.state);
 }
 
-class NumberChangedState extends DataNumberState {
-  NumberChangedState(super.state);
-}
-
-class DataColorState extends HomeState {
-  DataColorState(super.state);
-}
-
-class ColorChangingState extends DataColorState {
-  ColorChangingState(super.state);
-}
-
-class ColorChangedState extends DataColorState {
-  ColorChangedState(super.state);
+class PostsLoadedState extends DataPostsState {
+  PostsLoadedState(super.state);
 }

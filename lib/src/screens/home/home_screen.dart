@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:template/public/routes/navigation_service.dart';
-import 'package:template/public/routes/route_keys.dart';
 import 'package:template/src/screens/home/bloc/home_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -25,52 +23,47 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   @override
+  void initState() {
+    super.initState();
+    context.read<HomeCubit>().getPosts();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           BlocBuilder<HomeCubit, HomeState>(
             buildWhen: (previous, current) {
-              return current is DataNumberState;
+              return current is DataPostsState;
             },
             builder: (context, state) {
-              return Text(
-                state.number.toString(),
-                textAlign: TextAlign.center,
-              );
-            },
-          ),
-          BlocBuilder<HomeCubit, HomeState>(
-            buildWhen: (previous, current) {
-              return current is DataColorState;
-            },
-            builder: (context, state) {
-              return GestureDetector(
-                onTap: () => context.read<HomeCubit>().changeColor(),
-                child: Container(
-                  color: state.hasColor ? Colors.red : Colors.yellow,
-                  height: 100,
-                  width: 100,
+              if (state is PostsLoadingState) {
+                return const Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              return Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        state.posts[index].body ?? '',
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    );
+                  },
+                  itemCount: state.posts.length,
                 ),
               );
             },
           ),
-          IconButton(
-            onPressed: () => navService.pushNamed(RouteKey.root),
-            icon: const Icon(Icons.arrow_forward_sharp),
-          ),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.read<HomeCubit>().increaseNumber();
-        },
-        child: const Icon(
-          Icons.add,
-        ),
       ),
     );
   }

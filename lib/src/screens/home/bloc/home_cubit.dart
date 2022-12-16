@@ -1,20 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:template/public/ultilies/logger.dart';
+import 'package:template/src/models/response/post.dart';
+import '../../../repositories/post_repository.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
+  final PostRepository _postRepository = PostRepository();
   HomeCubit() : super(HomeInitial());
 
-  increaseNumber() {
-    emit(NumberChangedState(state));
-    LoggerUtils.i(state.number + 1);
-    emit(NumberChangedState(state..number = state.number + 1));
-  }
-
-  changeColor() {
-    emit(ColorChangingState(state));
-    LoggerUtils.i(!state.hasColor);
-    emit(ColorChangedState(state..hasColor = !state.hasColor));
+  getPosts() async {
+    emit(PostsLoadingState(state));
+    await Future.delayed(const Duration(seconds: 1));
+    final posts = await _postRepository.getPosts();
+    emit(PostsLoadedState(state..posts = posts));
   }
 }

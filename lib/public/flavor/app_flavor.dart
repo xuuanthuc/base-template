@@ -10,11 +10,11 @@ class AppFlavor {
   static String get baseApi {
     switch (appFlavor) {
       case Flavor.release:
-        return 'https://';
+        return 'https://jsonplaceholder.typicode.com';
       case Flavor.development:
-        return 'http://';
+        return 'https://jsonplaceholder.typicode.com';
       default:
-        return 'http://';
+        return 'https://jsonplaceholder.typicode.com';
     }
   }
 }

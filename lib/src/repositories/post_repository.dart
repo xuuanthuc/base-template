@@ -1,5 +1,5 @@
-import 'package:template/src/models/response/post.dart';
-import 'package:template/src/network/endpoint.dart';
+import './../../src/models/response/post.dart';
+import './../../src/network/endpoint.dart';
 
 import '../di/dependencies.dart';
 import '../network/api_provider.dart';

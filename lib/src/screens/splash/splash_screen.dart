@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:template/public/routes/navigation_service.dart';
-import 'package:template/public/routes/route_keys.dart';
+import '../../../public/routes/navigation_service.dart';
+import '../../../l10n/l10n.dart';
+import '../../../public/routes/route_keys.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -10,7 +11,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -29,8 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
+      body: Center(
+        child: Text(AppLocalizations.of(context)!.hello),
+      ),
     );
   }
 }

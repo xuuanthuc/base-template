@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:template/src/screens/home/home_screen.dart';
-
 import '../public/routes/app_routes.dart';
 import '../public/routes/navigation_service.dart';
 import '../public/routes/route_observer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,6 +15,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
         ),
+        locale: const Locale('vi', ''),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         navigatorObservers: [MyRouteObserver()],
         onGenerateRoute: AppRoutes.onGenerateRoutes,
         onGenerateInitialRoutes: (_) =>

@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:template/src/models/response/post.dart';
+import '../../../models/response/post.dart';
 import '../../../repositories/post_repository.dart';
 
 part 'home_state.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:template/src/screens/home/home_screen.dart';
-import 'package:template/src/screens/root/root_screen.dart';
+import './../../src/screens/home/home_screen.dart';
+import './../../src/screens/root/root_screen.dart';
 import '../../src/screens/splash/splash_screen.dart';
 import 'route_keys.dart';
 

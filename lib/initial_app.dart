@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:template/src/di/dependencies.dart';
+import './../../src/di/dependencies.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override

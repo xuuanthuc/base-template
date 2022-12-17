@@ -1,16 +1,10 @@
-# template
+# Flutter code base
 
-A new Flutter project.
+My flutter code base
 
-## Getting Started
+## Technical
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Dependencies injection](https://pub.dev/packages/injectable)
+- [Bloc management architect](https://pub.dev/packages/flutter_bloc)
+- [Flavor development/product](https://medium.com/@animeshjain/build-flavors-in-flutter-android-and-ios-with-different-firebase-projects-per-flavor-27c5c5dac10b)
+- [Internationalizing i18n](https://docs.flutter.dev/development/accessibility-and-localization/internationalization)

@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Text(AppLocalizations.of(context)!.hello),
+        child: Text(AppLocalizations.of(context)!.hello('thuc')),
       ),
     );
   }

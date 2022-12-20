@@ -43,6 +43,9 @@ dependencies:
   logger: ^1.1.0
   intl: ^0.17.0
   dio: ^4.0.6
+  equatable: ^2.0.5
+  fluttertoast: ^8.1.2
+  connectivity_plus: ^3.0.2
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,8 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:template/global/utilities/toast.dart';
+import '../../global_bloc/connectivity/connectivity_bloc.dart';
 import 'bloc/home_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,9 +10,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit(),
-      child: const HomeView(),
+    return BlocListener<ConnectivityBloc, ConnectivityState>(
+      listener: (context, state) {
+        if (state is ConnectivityChangedState) {
+          if(state.result == ConnectivityResult.none) {
+            appToast(context, message: "No connection");
+          } else {
+            appToast(context, message: "Connection back");
+          }
+        }
+      },
+      child: BlocProvider(
+        create: (context) => HomeCubit(),
+        child: const HomeView(),
+      ),
     );
   }
 }

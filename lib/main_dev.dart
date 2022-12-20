@@ -1,4 +1,4 @@
-import './../../public/flavor/app_flavor.dart';
+import './../../global/flavor/app_flavor.dart';
 import './../../src/app.dart';
 import 'initial_app.dart';
 

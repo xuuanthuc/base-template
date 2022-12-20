@@ -1,4 +1,4 @@
-import '../../public/flavor/app_flavor.dart';
+import '../../global/flavor/app_flavor.dart';
 
 abstract class ApiEndpoint{
   static String get _baseUrl => AppFlavor.baseApi;

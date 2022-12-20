@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
@@ -68,68 +69,7 @@ class ApiProvider {
         ),
       );
       LoggerUtils.i(response.data);
-      response.data = {
-        "data": [
-          {
-            "userId": 5,
-            "id": 49,
-            "title": "laborum non sunt aut ut assumenda perspiciatis voluptas",
-            "body":
-                "inventore ab sint\nnatus fugit id nulla sequi architecto nihil quaerat\neos tenetur in in eum veritatis non\nquibusdam officiis aspernatur cumque aut commodi aut"
-          },
-          {
-            "userId": 5,
-            "id": 50,
-            "title":
-                "repellendus qui recusandae incidunt voluptates tenetur qui omnis exercitationem",
-            "body":
-                "error suscipit maxime adipisci consequuntur recusandae\nvoluptas eligendi et est et voluptates\nquia distinctio ab amet quaerat molestiae et vitae\nadipisci impedit sequi nesciunt quis consectetur"
-          },
-          {
-            "userId": 6,
-            "id": 51,
-            "title": "soluta aliquam aperiam consequatur illo quis voluptas",
-            "body":
-                "sunt dolores aut doloribus\ndolore doloribus voluptates tempora et\ndoloremque et quo\ncum asperiores sit consectetur dolorem"
-          },
-          {
-            "userId": 6,
-            "id": 52,
-            "title":
-                "qui enim et consequuntur quia animi quis voluptate quibusdam",
-            "body":
-                "iusto est quibusdam fuga quas quaerat molestias\na enim ut sit accusamus enim\ntemporibus iusto accusantium provident architecto\nsoluta esse reprehenderit qui laborum"
-          },
-          {
-            "userId": 6,
-            "id": 53,
-            "title": "ut quo aut ducimus alias",
-            "body":
-                "minima harum praesentium eum rerum illo dolore\nquasi exercitationem rerum nam\nporro quis neque quo\nconsequatur minus dolor quidem veritatis sunt non explicabo similique"
-          },
-          {
-            "userId": 6,
-            "id": 54,
-            "title": "sit asperiores ipsam eveniet odio non quia",
-            "body":
-                "totam corporis dignissimos\nvitae dolorem ut occaecati accusamus\nex velit deserunt\net exercitationem vero incidunt corrupti mollitia"
-          },
-          {
-            "userId": 6,
-            "id": 55,
-            "title": "sit vel voluptatem et non libero",
-            "body":
-                "debitis excepturi ea perferendis harum libero optio\neos accusamus cum fuga ut sapiente repudiandae\net ut incidunt omnis molestiae\nnihil ut eum odit"
-          },
-          {
-            "userId": 6,
-            "id": 56,
-            "title": "qui et at rerum necessitatibus",
-            "body":
-                "aut est omnis dolores\nneque rerum quod ea rerum velit pariatur beatae excepturi\net provident voluptas corrupti\ncorporis harum reprehenderit dolores eligendi"
-          }
-        ]
-      };
+      response.data = {"data" : response.data };
       responseJson = _formatRes(
         response.statusCode,
         response.data,

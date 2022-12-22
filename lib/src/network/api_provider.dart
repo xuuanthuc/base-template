@@ -1,8 +1,8 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
+import '../../global/flavor/app_flavor.dart';
 import '../../global/utilities/logger.dart';
 import 'error_code.dart';
 import 'exception.dart';
@@ -13,6 +13,7 @@ class ApiProvider {
     BaseOptions(
       connectTimeout: 30000,
       headers: {'Content-Type': 'application/json; charset=utf-8'},
+      baseUrl: AppFlavor.baseApi,
       contentType: Headers.jsonContentType,
     ),
   );
@@ -29,10 +30,12 @@ class ApiProvider {
   }
 
   void _requestInterceptor(
-      RequestOptions options, RequestInterceptorHandler handler,
-      {bool? needToken}) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler, {
+    bool? needToken,
+  }) async {
     String token = '';
-    if (needToken == true) {
+    if (needToken ?? true) {
       // token = await AppPreference().authToken ?? '';
       LoggerUtils.d('BEARER: $token');
       options.headers.addAll({'Authorization': 'Bearer $token'});
@@ -46,7 +49,7 @@ class ApiProvider {
     Map<String, dynamic>? queryParams,
     Map<String, dynamic>? data,
     FormData? formParams,
-    required String method,
+    required Method method,
     required String url,
     bool? needToken,
   }) async {
@@ -62,14 +65,14 @@ class ApiProvider {
                 ? data
                 : rawData,
         options: Options(
-          method: method,
+          method: method.name,
           validateStatus: (code) {
             return code! >= 200 && code < 300;
           },
         ),
       );
       LoggerUtils.i(response.data);
-      response.data = {"data" : response.data };
+      response.data = {"data": response.data};
       responseJson = _formatRes(
         response.statusCode,
         response.data,
@@ -87,46 +90,63 @@ class ApiProvider {
     return responseJson;
   }
 
-  Future get(String url,
-      {Map<String, dynamic>? params, bool? needToken}) async {
+  Future get(
+    String url, {
+    Map<String, dynamic>? params,
+    bool? needToken,
+  }) async {
     return await request(
       method: Method.get,
       url: url,
       queryParams: params,
-      needToken: needToken ?? true,
+      needToken: needToken,
     );
   }
 
-  Future postMultiPart(String url, FormData formData, {bool? needToken}) async {
+  Future postMultiPart(
+    String url,
+    FormData formData, {
+    bool? needToken,
+  }) async {
     return await request(
       method: Method.post,
       url: url,
       formParams: formData,
-      needToken: needToken ?? true,
+      needToken: needToken,
     );
   }
 
-  Future putMultiPart(String url, FormData formData, {bool? needToken}) async {
+  Future putMultiPart(
+    String url,
+    FormData formData, {
+    bool? needToken,
+  }) async {
     return await request(
       method: Method.put,
       url: url,
       formParams: formData,
-      needToken: needToken ?? true,
+      needToken: needToken,
     );
   }
 
-  Future post(String url,
-      {Map<String, dynamic>? params, bool? needToken}) async {
+  Future post(
+    String url, {
+    Map<String, dynamic>? params,
+    bool? needToken,
+  }) async {
     return await request(
       method: Method.post,
       url: url,
       data: params,
-      needToken: needToken ?? true,
+      needToken: needToken,
     );
   }
 
-  Future put(String url,
-      {Map<String, dynamic>? params, bool? needToken}) async {
+  Future put(
+    String url, {
+    Map<String, dynamic>? params,
+    bool? needToken,
+  }) async {
     return await request(
       method: Method.put,
       url: url,
@@ -141,17 +161,20 @@ class ApiProvider {
       method: Method.delete,
       url: url,
       data: params,
-      needToken: needToken ?? true,
+      needToken: needToken,
     );
   }
 
-  Future patch(String url,
-      {Map<String, dynamic>? params, bool? needToken}) async {
+  Future patch(
+    String url, {
+    Map<String, dynamic>? params,
+    bool? needToken,
+  }) async {
     return await request(
       method: Method.patch,
       url: url,
       data: params,
-      needToken: needToken ?? true,
+      needToken: needToken,
     );
   }
 
@@ -172,14 +195,4 @@ class ApiProvider {
   }
 }
 
-class Method {
-  static String get get => 'get';
-
-  static String get post => 'post';
-
-  static String get patch => 'patch';
-
-  static String get put => 'put';
-
-  static String get delete => 'delete';
-}
+enum Method { get, post, patch, put, delete }

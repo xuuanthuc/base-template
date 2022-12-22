@@ -9,7 +9,7 @@ class PostRepository {
 
   Future<List<PostData>> getPosts() async {
     List<PostData> posts = [];
-    final res = await _apiProvider.get(ApiEndpoint.post, needToken: false);
+    final res = await _apiProvider.get(ApiEndpoint.post);
     res['data'].forEach((e) => posts.add(PostData.fromJson(e)));
     return posts;
   }

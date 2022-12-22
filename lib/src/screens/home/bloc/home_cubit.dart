@@ -6,12 +6,16 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final PostRepository _postRepository = PostRepository();
+
   HomeCubit() : super(HomeInitial());
 
   getPosts() async {
     emit(PostsLoadingState(state));
+    List<PostData> posts = [];
     await Future.delayed(const Duration(seconds: 1));
-    final posts = await _postRepository.getPosts();
+    try {
+      posts = await _postRepository.getPosts();
+    } catch (_) {}
     emit(PostsLoadedState(state..posts = posts));
   }
 }

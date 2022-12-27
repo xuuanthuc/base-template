@@ -14,9 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => ConnectivityBloc(),
-        ),
+        BlocProvider(create: (context) => ConnectivityBloc()),
       ],
       child: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -29,8 +27,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           navigatorObservers: [MyRouteObserver()],
           onGenerateRoute: AppRoutes.onGenerateRoutes,
-          onGenerateInitialRoutes: (_) =>
-              AppRoutes.onGenerateInitialRoute(),
+          onGenerateInitialRoutes: (_) => AppRoutes.onGenerateInitialRoute(),
           navigatorKey: NavigationService.navigationKey,
         ),
       ),

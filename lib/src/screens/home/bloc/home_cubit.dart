@@ -1,4 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import '../../../../global/utilities/permission.dart';
 import '../../../models/response/post.dart';
 import '../../../repositories/post_repository.dart';
 
@@ -12,10 +14,18 @@ class HomeCubit extends Cubit<HomeState> {
   getPosts() async {
     emit(PostsLoadingState(state));
     List<PostData> posts = [];
-    await Future.delayed(const Duration(seconds: 1));
     try {
       posts = await _postRepository.getPosts();
     } catch (_) {}
     emit(PostsLoadedState(state..posts = posts));
+  }
+
+  void pickImage(ImageSource imageSource) async {
+    var access = await RequestPermission.canAccessImagePicker(imageSource);
+    if (access != null && access) {
+      ImagePicker().pickImage(source: imageSource);
+    } else if (access != null && !access) {
+      emit(CameraPermissionDeniedState(state));
+    }
   }
 }

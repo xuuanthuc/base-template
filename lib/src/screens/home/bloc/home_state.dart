@@ -23,3 +23,7 @@ class PostsLoadingState extends DataPostsState {
 class PostsLoadedState extends DataPostsState {
   PostsLoadedState(super.state);
 }
+
+class CameraPermissionDeniedState extends DataPostsState{
+  CameraPermissionDeniedState(super.state);
+}

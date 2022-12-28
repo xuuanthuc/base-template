@@ -15,10 +15,8 @@ class HomeScreen extends StatelessWidget {
     return BlocListener<ConnectivityBloc, ConnectivityState>(
       listener: (context, state) {
         if (state is ConnectivityChangedState) {
-          if(state.result == ConnectivityResult.none) {
+          if (state.result == ConnectivityResult.none) {
             appToast(context, message: "No connection");
-          } else {
-            appToast(context, message: "Connection back");
           }
         }
       },
@@ -84,10 +82,32 @@ class _HomeViewState extends State<HomeView> {
         backgroundColor: Colors.white,
         body: Column(
           children: [
+            BlocBuilder<HomeCubit, HomeState>(
+              buildWhen: (previous, current) {
+                return current is DataAvatarState;
+              },
+              builder: (context, state) {
+                return state.imageFile == null
+                    ? Container()
+                    : SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        height: MediaQuery.of(context).size.width * 0.5,
+                        child: Image.file(
+                          state.imageFile!,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+              },
+            ),
             ElevatedButton(
               onPressed: () =>
                   context.read<HomeCubit>().pickImage(ImageSource.camera),
               child: const Text('Open camera'),
+            ),
+            ElevatedButton(
+              onPressed: () =>
+                  context.read<HomeCubit>().pickImage(ImageSource.gallery),
+              child: const Text('Open gallery'),
             ),
             BlocBuilder<HomeCubit, HomeState>(
               buildWhen: (previous, current) {

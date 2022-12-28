@@ -8,7 +8,6 @@ abstract class RequestPermission {
     if (imageSource == ImageSource.camera) {
       var cameraStatus = await Permission.camera.request();
       if (cameraStatus.isGranted) {
-        ImagePicker().pickImage(source: imageSource);
         return true;
       } else {
         var status = await Permission.camera.status;
@@ -26,7 +25,17 @@ abstract class RequestPermission {
         }
       }
     } else if (imageSource == ImageSource.gallery) {
-
+      if (Platform.isIOS) {
+        var photosStatus = await Permission.photos.request();
+        if (photosStatus.isPermanentlyDenied) {
+          return false;
+        } else if (photosStatus.isGranted || photosStatus.isLimited) {
+          return true;
+        } else {
+          return null;
+        }
+      }
+      return true;
     }
     return false;
   }

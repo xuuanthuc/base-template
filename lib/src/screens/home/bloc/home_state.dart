@@ -2,9 +2,11 @@ part of 'home_cubit.dart';
 
 abstract class HomeState {
   late List<PostData> posts;
+  File? imageFile;
 
   HomeState(HomeState? state) {
     posts = state?.posts ?? [];
+    imageFile = state?.imageFile;
   }
 }
 
@@ -24,6 +26,14 @@ class PostsLoadedState extends DataPostsState {
   PostsLoadedState(super.state);
 }
 
-class CameraPermissionDeniedState extends DataPostsState{
+class DataAvatarState extends HomeState{
+  DataAvatarState(super.state);
+}
+
+class CameraPermissionDeniedState extends DataAvatarState{
   CameraPermissionDeniedState(super.state);
+}
+
+class ImagePickedState extends DataAvatarState{
+  ImagePickedState(super.state);
 }

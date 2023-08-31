@@ -11,31 +11,6 @@ My flutter code base
 
 ## Architect
 
-```
--- android
--- ios
--- assets
--- lib --|
-         |--l10n
-         |--public--|
-         |          |--flavor
-         |          |--routes
-         |          |--style
-         |          |--utilities
-         |          |--validators
-         |
-         |--src--|
-         |       |--di
-         |       |--models
-         |       |--network
-         |       |--repositories
-         |       |--screens--|
-         |       |           |--
-         |       |           |--
-         |       |--app.dart
-         |
-```
-
 ## Note 
 There are 2 different type of bloc we can use. I want to choose to use the different bloc for different purpose:
 

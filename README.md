@@ -19,3 +19,9 @@ There are 2 different type of bloc we can use. I want to choose to use the diffe
 
 Why? Because global state change can be from anywhere in the app, any screen, so it makes sense to trigger an event from 1 screen, and state is updated in all related screens in the app.
 However, as for local bloc, the event and state are in the same screen, so it really doesn’t matter if the trigger is an event or a function call. Therefore, to simplify the code, I think cubit is better choice.
+
+
+##terminal
+- flutter build android flavor dev -t lib/main_dev.dart
+- flutter gen-l10n
+- flutter packages pub run build_runner build

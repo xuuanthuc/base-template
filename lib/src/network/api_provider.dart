@@ -11,8 +11,8 @@ import 'exception.dart';
 class ApiProvider {
   var dio = Dio(
     BaseOptions(
-      connectTimeout: 30000,
-      headers: {'Content-Type': 'application/json; charset=utf-8'},
+      connectTimeout: const Duration(seconds: 30),
+      headers: {'Content-Type': 'application/json'},
       baseUrl: AppFlavor.baseApi,
       contentType: Headers.jsonContentType,
     ),
@@ -80,9 +80,9 @@ class ApiProvider {
       );
     } on SocketException {
       throw ErrorException(ErrorCode.NO_NETWORK, 'NO_NETWORK');
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       debugPrint('error = $e');
-      if (e.type == DioErrorType.connectTimeout) {
+      if (e.type == DioExceptionType.connectionTimeout) {
         throw ErrorException(ErrorCode.NO_NETWORK, 'NO_NETWORK');
       }
       throw ErrorException(e.response?.statusCode, e.response?.data['error']);

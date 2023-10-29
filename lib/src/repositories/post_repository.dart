@@ -1,9 +1,13 @@
+import 'package:injectable/injectable.dart';
+
 import './../../src/models/response/post.dart';
 import './../../src/network/endpoint.dart';
 
 import '../di/dependencies.dart';
 import '../network/api_provider.dart';
 
+@injectable
+@lazySingleton
 class PostRepository {
   final ApiProvider _apiProvider = getIt.get<ApiProvider>();
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import './../../src/screens/home/home_screen.dart';
-import './../../src/screens/root/root_screen.dart';
-import '../../src/screens/splash/splash_screen.dart';
+import '../../screens/home/home_screen.dart';
+import '../../screens/root/root_screen.dart';
+import '../../screens/splash/splash_screen.dart';
 import 'route_keys.dart';
 
 class AppRoutes {

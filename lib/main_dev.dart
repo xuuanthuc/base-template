@@ -1,4 +1,5 @@
-import './../../global/flavor/app_flavor.dart';
+import 'package:template/src/global/flavor/app_flavor.dart';
+
 import './../../src/app.dart';
 import 'initial_app.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'global/routes/app_routes.dart';
-import 'global/routes/navigation_service.dart';
-import 'global/routes/route_observer.dart';
+import '../global/routes/app_routes.dart';
+import '../global/routes/navigation_service.dart';
+import '../global/routes/route_observer.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'global_bloc/connectivity/connectivity_bloc.dart';
